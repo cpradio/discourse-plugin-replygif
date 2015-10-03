@@ -58,11 +58,13 @@
 
     .replygif-img {
       border-bottom: 3px solid transparent;
+      opacity: 0.75;
       width: 100%;
     }
 
     .replygif-img.selected {
       border-bottom: 3px solid $tertiary;
+      opacity: 1.0;
     }
   }
 }
