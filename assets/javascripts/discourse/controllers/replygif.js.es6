@@ -44,22 +44,14 @@ export default Ember.Controller.extend(ModalFunctionality, {
     this.set("loading", true);
     this.set("selectedGifs", []);
 
-    var url = this.getUrl("gifs"), to_check = false;
+    var url = this.getUrl("gifs");
 
-    if (this.get("selectedCategory")) {
+    if (this.get("selectedCategory") && this.get("selectedCategory").length > 0) {
       url += "&reply=" + this.get("selectedCategory");
-      to_check = true;
     }
 
-    if (this.get("selectedTags")) {
+    if (this.get("selectedTags") && this.get("selectedTags").length > 0) {
       url += "&tag-operator=and&tag=" + this.get("selectedTags").join(",");
-      to_check = true;
-    }
-
-    if (!to_check) {
-      this.get("currentGifs").setObjects([]);
-      this.set("loading", false);
-      return;
     }
 
     Discourse.ajax(url).then(function(resp) {
@@ -68,9 +60,26 @@ export default Ember.Controller.extend(ModalFunctionality, {
     }.bind(this));
   },
 
+  onShow: function() {
+    this.setProperties({"loading": true, "categories": [], "selectedCategory": "", "selectedTags": [], tags: [], selectedGifs: [] });
+
+    Discourse.ajax(this.getUrl("replies")).then(
+        function(resp) {
+          this.set("categories", resp);
+          this.set("selectedCategory", this.get("filterCategories")[0].title);
+          this.refresh();
+        }.bind(this)
+    );
+
+    Discourse.ajax(this.getUrl("tags")).then(
+        function(resp) {
+          this.set("tags", resp);
+        }.bind(this)
+    );
+  },
+
   init: function () {
     this._super();
-    this.setProperties({"loading": true, "categories": [], "selectedCategory": "", tags: [], selectedGifs: [] });
 
     this.addObserver("selectedCategory", function() {
       this.refresh();
@@ -79,20 +88,6 @@ export default Ember.Controller.extend(ModalFunctionality, {
     this.addObserver("selectedTags", function() {
       this.refresh();
     }.bind(this));
-
-    Discourse.ajax(this.getUrl("replies")).then(
-      function(resp) {
-        this.set("categories", resp);
-        this.set("selectedCategory", this.get("filterCategories")[0].title);
-        this.refresh();
-      }.bind(this)
-    );
-
-    Discourse.ajax(this.getUrl("tags")).then(
-        function(resp) {
-          this.set("tags", resp);
-        }.bind(this)
-    );
   },
 
   getUrl: function(path) {
