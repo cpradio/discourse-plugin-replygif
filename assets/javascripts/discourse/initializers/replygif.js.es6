@@ -10,7 +10,9 @@ export default
   {
     const siteSettings = container.lookup('site-settings:main');
 
-    if (siteSettings.replygif_enabled) {
+    if (siteSettings.replygif_enabled
+      && siteSettings.replygif_api_url
+      && siteSettings.replygif_api_key) {
       if (typeof Discourse.ComposerEditorComponent === "undefined") {
         ApplicationRoute.reopen({
           actions: {
@@ -25,17 +27,13 @@ export default
           initEditor: function () {
             // overwrite and wrap.
             this._super();
-            if (Discourse.SiteSettings.replygif_enabled
-                && Discourse.SiteSettings.replygif_api_url
-                && Discourse.SiteSettings.replygif_api_key) {
-              var view = this;
-              var button_text = I18n.t("replygif.composer_button_text");
-              var btn = $('<button class="wmd-button wmd-replygif-button" title="' + button_text + '" aria-label="' + button_text + '"></button>');
-              btn.click(function () {
-                view.get("controller").send("showReplyGif", view);
-              });
-              $("#wmd-button-row,.wmd-button-row").append(btn);
-            }
+            var view = this;
+            var button_text = I18n.t("replygif.composer_button_text");
+            var btn = $('<button class="wmd-button wmd-replygif-button" title="' + button_text + '" aria-label="' + button_text + '"></button>');
+            btn.click(function () {
+              view.get("controller").send("showReplyGif", view);
+            });
+            $("#wmd-button-row,.wmd-button-row").append(btn);
           }
         });
       } else {
