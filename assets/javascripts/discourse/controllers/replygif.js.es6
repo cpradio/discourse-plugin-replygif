@@ -33,7 +33,11 @@ export default Ember.Controller.extend(ModalFunctionality, {
     apply: function() {
       var selectedItems = this.get("selectedGifs"), self = this;
       selectedItems.forEach(function(item) {
-        self.composerView.addMarkdown("![](" + item + ") ");
+        if (self.composerViewOld)
+          self.composerViewOld.addMarkdown("![](" + item + ") ");
+        else if (self.composerView)
+          self.composerView._addText(self.composerView._getSelected(), "![](" + item + ") ");
+
       });
       this.set("selectedGifs", []);
       this.send('closeModal');
