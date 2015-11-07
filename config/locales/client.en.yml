@@ -1,7 +1,7 @@
 en:
   js:
     composer:
-      replygif_button_text: "Open ReplyGif"
+      replygif_button_title: "Open ReplyGif"
     replygif:
       composer_button_text: "Open ReplyGif"
       modal_title: "Pick ReplyGif"
