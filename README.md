@@ -20,7 +20,7 @@ In Action
 
 Follow the directions at [Install a Plugin](https://meta.discourse.org/t/install-a-plugin/19157) using https://github.com/cpradio/discourse-plugin-replygif.git as the repository URL.
 
-## HTTPS Additional Setup
+### HTTPS Additional Setup
 
 If your instance utilizes HTTPS, you will need to setup a reverse proxy to handle API requests for ReplyGif as the service itself does not support HTTPS at this moment (2015-12).
 
