@@ -1,0 +1,10 @@
+run:
+  - replace:
+     filename: "/etc/nginx/conf.d/discourse.conf"
+     from: "location ~ ^/plugins/ {"
+     to: |
+       location /replygif/ {
+         proxy_pass http://replygif.net/api/;
+       }
+
+       location ~ ^/plugins/ {
