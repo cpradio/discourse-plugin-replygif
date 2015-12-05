@@ -2,6 +2,7 @@ import showModal from 'discourse/lib/show-modal';
 import ApplicationRoute from 'discourse/routes/application';
 import ComposerView from 'discourse/views/composer';
 import { onToolbarCreate } from 'discourse/components/d-editor';
+import NewComposer from 'discourse/components/d-editor';
 
 export default
 {
@@ -13,7 +14,24 @@ export default
     if (siteSettings.replygif_enabled
       && siteSettings.replygif_api_url
       && siteSettings.replygif_api_key) {
-      if (typeof Discourse.ComposerEditorComponent === "undefined") {
+      if (NewComposer !== "undefined") {
+        NewComposer.reopen({
+          actions: {
+            showReplyGif: function() {
+              showModal('replygif').setProperties({composerView: this});
+            }
+          }
+        });
+
+        onToolbarCreate(toolbar => {
+          toolbar.addButton({
+            id: "replygif_button",
+            group: "extras",
+            icon: "play-circle-o",
+            action: 'showReplyGif'
+          });
+        });
+      } else {
         ApplicationRoute.reopen({
           actions: {
             showReplyGif: function (composerView) {
@@ -35,23 +53,6 @@ export default
             });
             $("#wmd-button-row,.wmd-button-row").append(btn);
           }
-        });
-      } else {
-        Discourse.DEditorComponent.reopen({
-          actions: {
-            showReplyGif: function() {
-              showModal('replygif').setProperties({composerView: this});
-            }
-          }
-        });
-
-        onToolbarCreate(toolbar => {
-          toolbar.addButton({
-            id: "replygif_button",
-            group: "extras",
-            icon: "play-circle-o",
-            action: 'showReplyGif'
-          });
         });
       }
     }
