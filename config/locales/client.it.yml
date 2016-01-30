@@ -1,0 +1,12 @@
+it:
+  js:
+    composer:
+      replygif_button_title: "Apri ReplyGif"
+    replygif:
+      composer_button_text: "Apri ReplyGif"
+      modal_title: "Seleziona ReplyGif"
+      none: "(nessuno)"
+      categories: "Categorie"
+      tags: "Tag"
+      insert: "Inserire le immagini selezionate"
+      alternate_text: "Tag: {{tags}}\r\nTitolo: {{caption}}"

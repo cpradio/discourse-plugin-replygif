@@ -1,0 +1,5 @@
+it:
+  site_settings:
+    replygif_enabled: "Mostrare il pulsante ReplyGif sulla finestra del composer?"
+    replygif_api_url: "Url dell' API per ReplyGif"
+    replygif_api_key: "La Chiave API per ReplyGif"
