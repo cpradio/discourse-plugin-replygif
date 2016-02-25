@@ -1,13 +1,13 @@
 # ReplyGif Plugin
 This plugin adds support for ReplyGif to quickly embed animated gifs into a topic.
 
-Composer Window Button
+Composer Window Button  
 ![](https://raw.githubusercontent.com/cpradio/discourse-plugin-replygif/master/screenshot-composer.png)
 
-Admin Settings
+Admin Settings  
 ![](https://raw.githubusercontent.com/cpradio/discourse-plugin-replygif/master/screenshot-admin-settings.png)
 
-In Action
+In Action  
 ![](https://raw.githubusercontent.com/cpradio/discourse-plugin-replygif/master/screenshot-action.gif)
 
 ## How to Help
