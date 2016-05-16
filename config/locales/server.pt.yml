@@ -1,0 +1,5 @@
+pt:
+  site_settings:
+    replygif_enabled: 'Mostrar botão ReplyGif na janela de composição?'
+    replygif_api_url: 'URL da API ReplyGif'
+    replygif_api_key: 'Chave da API ReplyGif'
