@@ -1,4 +1,5 @@
 import ModalFunctionality from 'discourse/mixins/modal-functionality';
+import AjaxLib from 'discourse/lib/ajax';
 
 export default Ember.Controller.extend(ModalFunctionality, {
   loading: true,
@@ -60,7 +61,7 @@ export default Ember.Controller.extend(ModalFunctionality, {
       url += "&tag-operator=and&tag=" + this.get("selectedTags").join(",");
     }
 
-    Discourse.ajax(url).then(function(resp) {
+    AjaxLib.ajax(url).then(function(resp) {
       this.get("currentGifs").setObjects(resp);
       this.set("loading", false);
     }.bind(this));
@@ -69,7 +70,7 @@ export default Ember.Controller.extend(ModalFunctionality, {
   onShow: function() {
     this.setProperties({"loading": true, "categories": [], "selectedCategory": "", "selectedTags": [], tags: [], selectedGifs: [] });
 
-    Discourse.ajax(this.getUrl("replies")).then(
+    AjaxLib.ajax(this.getUrl("replies")).then(
         function(resp) {
           this.set("categories", resp);
           this.set("selectedCategory", this.get("filterCategories")[0].title);
@@ -77,7 +78,7 @@ export default Ember.Controller.extend(ModalFunctionality, {
         }.bind(this)
     );
 
-    Discourse.ajax(this.getUrl("tags")).then(
+    AjaxLib.ajax(this.getUrl("tags")).then(
         function(resp) {
           this.set("tags", resp);
         }.bind(this)

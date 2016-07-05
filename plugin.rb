@@ -1,11 +1,10 @@
 # name: discourse-plugin-replygif
 # about: Add ReplyGIF support
-# version: 0.4.0
+# version: 0.5.0
 # authors: Matthew Wilkin
 # url: https://github.com/cpradio/discourse-plugin-replygif
 
 enabled_site_setting :replygif_enabled
 
 register_asset "javascripts/discourse/templates/replygif.hbs"
-
 register_asset 'stylesheets/replygif.scss'
