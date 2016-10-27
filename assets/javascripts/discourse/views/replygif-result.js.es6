@@ -1,11 +1,10 @@
-import StringBuffer from 'discourse/mixins/string-buffer';
+import { bufferedRender } from 'discourse-common/lib/buffered-render';
 
-export default Ember.View.extend(StringBuffer, {
+export default Ember.View.extend(bufferedRender({
   result: Em.computed.alias("content"),
   tagName: "div",
   selected: false,
   classNames: ["replygif-imgwrap"],
-  rawTemplate: "replygif-result.raw",
 
   selectedClass: function() {
     return this.get("selected") ? "selected" : "";
@@ -30,6 +29,13 @@ export default Ember.View.extend(StringBuffer, {
     } else {
       return this.get("result.file").replace("/i/", "/thumbnail/");
     }
-  }.property("result.file", "selected")
+  }.property("result.file", "selected"),
 
-});
+  buildBuffer(buffer) {
+    let selectedClass = this.get('selectedClass');
+    let imagePath = this.get('imagePath');
+    let alternateText = this.get('alternateText');
+
+    buffer.push(`<img class="replygif-img ${selectedClass}" src="${imagePath}" alt="${alternateText}" title="${alternateText}">`);
+  }
+}));
