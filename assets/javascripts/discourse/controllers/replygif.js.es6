@@ -30,6 +30,7 @@ export default Ember.Controller.extend(ModalFunctionality, {
       } else {
         currentSelectedItems.push(file);
       }
+      this.set("selectedGifs", currentSelectedItems);
     },
     apply: function() {
       var selectedItems = this.get("selectedGifs"), self = this, output = "";
