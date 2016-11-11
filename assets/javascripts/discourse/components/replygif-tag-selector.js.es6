@@ -1,5 +1,6 @@
 import TextField from 'discourse/components/text-field';
-const { getOwner } = Ember;
+import { getOwner } from 'discourse-common/lib/get-owner';
+
 export default TextField.extend({
   datasource: undefined,
   search: "",
