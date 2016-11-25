@@ -2,7 +2,9 @@
   content: "\f01d"
 }
 
-.replygif-modal {
+#replygif-modal {
+  overflow: visible;
+
   .replygif-content {
     max-height: 335px;
     min-height: 200px;

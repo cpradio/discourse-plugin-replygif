@@ -27,7 +27,7 @@ export default TextField.extend({
 
       onChangeItems: function(items){
         self.get("datasource.selectedTags").setObjects(items);
-        self.get("datasource").refresh();
+        self.sendAction("refresh");
         self.$().autocomplete({ cancel: true })
       }
     });

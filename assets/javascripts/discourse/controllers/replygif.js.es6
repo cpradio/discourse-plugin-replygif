@@ -4,10 +4,13 @@ import AjaxLib from 'discourse/lib/ajax';
 export default Ember.Controller.extend(ModalFunctionality, {
   loading: true,
   categories: [],
-  selectedTags: [],
+  selectedCategory: "",
   currentGifs: [],
-  tags: [],
   selectedGifs: [],
+  datasource: {
+    tags: [],
+    selectedTags: []
+  },
 
   loadingTags: function(){
     return this.get("categories").length === 0;
@@ -45,6 +48,9 @@ export default Ember.Controller.extend(ModalFunctionality, {
 
       this.set("selectedGifs", []);
       this.send('closeModal');
+    },
+    refresh: function() {
+      this.refresh();
     }
   },
 
@@ -58,8 +64,8 @@ export default Ember.Controller.extend(ModalFunctionality, {
       url += "&reply=" + this.get("selectedCategory");
     }
 
-    if (this.get("selectedTags") && this.get("selectedTags").length > 0) {
-      url += "&tag-operator=and&tag=" + this.get("selectedTags").join(",");
+    if (this.get("datasource.selectedTags") && this.get("datasource.selectedTags").length > 0) {
+      url += "&tag-operator=and&tag=" + this.get("datasource.selectedTags").join(",");
     }
 
     AjaxLib.ajax(url).then(function(resp) {
@@ -69,7 +75,7 @@ export default Ember.Controller.extend(ModalFunctionality, {
   },
 
   onShow: function() {
-    this.setProperties({"loading": true, "categories": [], "selectedCategory": "", "selectedTags": [], tags: [], selectedGifs: [] });
+    this.setProperties({"loading": true, "categories": [], "selectedCategory": "", "datasource": {"selectedTags": [], tags: []}, selectedGifs: [] });
 
     AjaxLib.ajax(this.getUrl("replies")).then(
         function(resp) {
@@ -81,7 +87,7 @@ export default Ember.Controller.extend(ModalFunctionality, {
 
     AjaxLib.ajax(this.getUrl("tags")).then(
         function(resp) {
-          this.set("tags", resp);
+          this.set("datasource.tags", resp);
         }.bind(this)
     );
   },
@@ -93,7 +99,7 @@ export default Ember.Controller.extend(ModalFunctionality, {
       this.refresh();
     }.bind(this));
 
-    this.addObserver("selectedTags", function() {
+    this.addObserver("datasource.selectedTags", function() {
       this.refresh();
     }.bind(this));
   },
