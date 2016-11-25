@@ -19,7 +19,9 @@
       {{i18n "loading"}}
     {{else}}
       <div class="replygif-box">
-          {{each result in currentGifs itemView="replygif-result"}}
+        {{#each currentGifs as |result|}}
+          {{replygif-result content=result pickItem="pickItem"}}
+        {{/each}}
       </div>
     {{/if}}
   </div>

@@ -1,4 +1,5 @@
 import TextField from 'discourse/components/text-field';
+import { getOwner } from 'discourse-common/lib/get-owner';
 
 export default TextField.extend({
   datasource: undefined,
@@ -9,7 +10,7 @@ export default TextField.extend({
         selected = [];
 
     this.$().val(this.get('tags')).autocomplete({
-      template: this.container.lookup('template:replygif-tag-selector-autocomplete.raw'),
+      template: getOwner(this).lookup('template:replygif-tag-selector-autocomplete.raw'),
       disabled: this.get('disabled'),
 
       dataSource: function(term) {

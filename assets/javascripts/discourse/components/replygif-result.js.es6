@@ -1,6 +1,4 @@
-import { bufferedRender } from 'discourse-common/lib/buffered-render';
-
-export default Ember.View.extend(bufferedRender({
+export default Ember.Component.extend({
   result: Em.computed.alias("content"),
   tagName: "div",
   selected: false,
@@ -16,7 +14,7 @@ export default Ember.View.extend(bufferedRender({
 
   click: function() {
     this.set("selected", !this.get("selected"));
-    this.get("controller").send("pickItem", this.get("result.file"));
+    this.sendAction("pickItem", this.get("result.file"));
   },
 
   alternateText: function() {
@@ -29,13 +27,5 @@ export default Ember.View.extend(bufferedRender({
     } else {
       return this.get("result.file").replace("/i/", "/thumbnail/");
     }
-  }.property("result.file", "selected"),
-
-  buildBuffer(buffer) {
-    let selectedClass = this.get('selectedClass');
-    let imagePath = this.get('imagePath');
-    let alternateText = this.get('alternateText');
-
-    buffer.push(`<img class="replygif-img ${selectedClass}" src="${imagePath}" alt="${alternateText}" title="${alternateText}">`);
-  }
-}));
+  }.property("result.file", "selected")
+});
