@@ -1,4 +1,4 @@
-<div class="modal-body replygif-modal" style="overflow: visible">
+{{#d-modal-body id="replygif-modal"}}
   <div>
     {{#if loadingTags}}
       {{i18n "loading"}}
@@ -25,7 +25,7 @@
       </div>
     {{/if}}
   </div>
-</div>
+{{/d-modal-body}}
 <div class="modal-footer">
   <button class="btn btn-primary pull-right" {{action "apply"}}>{{i18n "replygif.insert"}}</button>
 </div>
