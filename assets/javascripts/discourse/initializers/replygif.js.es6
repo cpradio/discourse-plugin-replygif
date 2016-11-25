@@ -12,7 +12,7 @@ function initializePlugin(api)
     Composer.reopen({
       actions: {
         showReplyGif: function () {
-          showModal('replygif', { title: 'replygif.modal_title' }).setProperties({composerView: this});
+          showModal('replygif').setProperties({composerView: this});
         }
       }
     });
