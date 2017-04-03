@@ -1,0 +1,5 @@
+es:
+  site_settings:
+    replygif_enabled: 'Mostrar botón de ReplyGif en la ventana de composición?'
+    replygif_api_url: 'El URL de la API (API URL) de ReplyGif'
+    replygif_api_key: 'La llave de la API (API key) de ReplyGif'
