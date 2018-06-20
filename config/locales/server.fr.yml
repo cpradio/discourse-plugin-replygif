@@ -1,0 +1,5 @@
+fr:
+  site_settings:
+    replygif_enabled: "Montrer le bouton ReplyGif dans l'éditeur ?"
+    replygif_api_url: "URL d'API pour ReplyGif"
+    replygif_api_key: "Clef d'API pour ReplyGif"
