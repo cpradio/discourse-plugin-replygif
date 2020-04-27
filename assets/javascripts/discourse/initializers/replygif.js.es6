@@ -21,7 +21,7 @@ function initializePlugin(api)
       toolbar.addButton({
         id: "replygif_button",
         group: "extras",
-        icon: "play-circle-o",
+        icon: "far-play-circle",
         action: 'showReplyGif'
       });
     });
