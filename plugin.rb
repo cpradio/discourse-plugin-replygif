@@ -1,6 +1,6 @@
 # name: discourse-plugin-replygif
 # about: Add ReplyGIF support
-# version: 1.1.5
+# version: 1.1.6
 # authors: Matthew Wilkin
 # url: https://github.com/cpradio/discourse-plugin-replygif
 
